@@ -1,0 +1,9 @@
+version: 2
+jobs:
+ build:
+   machine: true
+   steps:
+     - checkout
+     - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+     - run: docker build -t $DOCKER_USERNAME/terraform-kubectl:latest .
+     - run: docker push $DOCKER_USERNAME/terraform-kubectl:latest
