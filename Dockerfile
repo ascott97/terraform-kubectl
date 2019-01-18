@@ -10,9 +10,9 @@ RUN apk add --no-cache ca-certificates bash curl python py-pip \
     && chmod +x /usr/local/bin/kubectl \
     && curl -o terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && unzip terraform.zip -d /usr/local/bin \
-    && rm -rf terraform.zip
-    && curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/${AWS_IAM_AUTH_VERSION}/2018-12-06/bin/linux/amd64/aws-iam-authenticator
-   && chmod +x /usr/local/bin/aws-iam-authenticator
+    && rm -rf terraform.zip \
+    && curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/${AWS_IAM_AUTH_VERSION}/2018-12-06/bin/linux/amd64/aws-iam-authenticator \
+    && chmod +x /usr/local/bin/aws-iam-authenticator \
 
 WORKDIR /root
 
