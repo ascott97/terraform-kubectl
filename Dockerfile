@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 ARG KUBECTL_VERSION="v1.13.0"
-ARG TERRAFORM_VERSION="0.11.10"
+ARG TERRAFORM_VERSION="0.11.11"
 ARG AWS_IAM_AUTH_VERSION="1.11.5"
 
 RUN apk add --no-cache ca-certificates bash curl python py-pip \
