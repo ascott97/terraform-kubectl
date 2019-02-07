@@ -15,11 +15,10 @@ RUN apk add --no-cache ca-certificates bash curl python py-pip \
     && curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/${AWS_IAM_AUTH_VERSION}/2018-12-06/bin/linux/amd64/aws-iam-authenticator \
     && chmod +x /usr/local/bin/aws-iam-authenticator \
     && curl -O https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz \
-    && mkdir helm-${HELM_VERSION} \
-    && tar -C helm-${HELM_VERSION} -zxvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
-    && mv helm-${HELM_VERSION}/helm /usr/local/bin \
+    && tar -zxvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
+    && mv linux-amd64/helm /usr/local/bin \
     && chmod +x /usr/local/bin/helm \
-    && rm -rf helm*
+    && rm -rf helm* linux-amd64
 
 WORKDIR /root
 
