@@ -3,6 +3,7 @@ FROM alpine:latest
 ARG KUBECTL_VERSION="v1.13.0"
 ARG TERRAFORM_VERSION="0.11.11"
 ARG AWS_IAM_AUTH_VERSION="1.11.5"
+ARG HELM_VERSION="v2.12.3"
 
 RUN apk add --no-cache ca-certificates bash curl python py-pip \
     && pip install awscli \
@@ -12,7 +13,12 @@ RUN apk add --no-cache ca-certificates bash curl python py-pip \
     && unzip terraform.zip -d /usr/local/bin \
     && rm -rf terraform.zip \
     && curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/${AWS_IAM_AUTH_VERSION}/2018-12-06/bin/linux/amd64/aws-iam-authenticator \
-    && chmod +x /usr/local/bin/aws-iam-authenticator
+    && chmod +x /usr/local/bin/aws-iam-authenticator \
+    && curl -O https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz \
+    && tar -C helm-${HELM_VERSION} -zxvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
+    && mv helm-${HELM_VERSION}/helm /usr/local/bin \
+    && chmod +x /usr/local/bin/helm \
+    && rm -rf helm*
 
 WORKDIR /root
 
